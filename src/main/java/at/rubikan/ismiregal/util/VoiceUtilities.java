@@ -16,12 +16,18 @@ import java.util.List;
 public class VoiceUtilities {
     private static final String EGAL = " ist mir egal!";
     private static VoiceManager voiceManager = VoiceManager.getInstance();
+    private static VoiceCache vc = new VoiceCache();
 
-    public void getWav(String text) {
-
+    public File getWav(String text) {
+        if (vc.get(text) != null) {
+            return vc.get(text);
+        } else {
+            vc.add(text, generateWav(text));
+            return vc.get(text);
+        }
     }
 
-    public void generateWav(String text) {
+    private File generateWav(String text) {
         Voice voice = voiceManager.getVoice("kevin16");
         voice.allocate();
         String path = System.getProperty("java.io.tmpdir") + File.separator + text.replace(" ", "");
@@ -30,6 +36,8 @@ public class VoiceUtilities {
         voice.speak(text + EGAL);
         voice.deallocate();
         ap.close();
+
+        return new File(path + ".wav");
     }
 
     public List<String> getVoices() {
