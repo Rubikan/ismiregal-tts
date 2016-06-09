@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * @author Andreas Rubik
  */
-@WebServlet("/IstMirEgal/*")
+@WebServlet("/tts/*")
 public class DontCareServlet extends HttpServlet {
     private static VoiceUtilities vu = new VoiceUtilities();
 
@@ -23,21 +23,21 @@ public class DontCareServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
         String speechText = pathInfo.replace("/", " ").trim();
-        File sound = vu.getWav(speechText);
+        if (speechText.length() > 0) {
+            File sound = vu.getWav(speechText);
 
-        response.setContentType("audio/x-wav");
-        response.setHeader("Content-Length", String.valueOf(sound.length()));
-        IOUtils.copy(new FileInputStream(sound), response.getOutputStream());
+            response.setContentType("audio/x-wav");
+            response.setHeader("Content-Length", String.valueOf(sound.length()));
+            IOUtils.copy(new FileInputStream(sound), response.getOutputStream());
+        } else {
+            response.getWriter().print("ERROR");
+        }
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String speechText = request.getParameter("text");
+        String speechText = request.getParameter("text").replace(" ", "/");
 
-        File sound = vu.getWav(speechText);
-
-        response.setContentType("audio/x-wav");
-        response.setHeader("Content-Length", String.valueOf(sound.length()));
-        IOUtils.copy(new FileInputStream(sound), response.getOutputStream());
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/tts/" + speechText));
     }
 }

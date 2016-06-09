@@ -8,9 +8,8 @@
 <body>
 <div align="center">
     <h1>Ist mir egal - Text to speech</h1>
-    <form action="${pageContext.request.contextPath}/IstMirEgal/" method="post">
-        <input type="text" name="text">
-        <br/><br/>
+    <form action="${pageContext.request.contextPath}/tts/" method="post">
+        <input title="Text-to-speech Input" type="text" name="text">
         <input type="submit" value="Submit">
     </form>
 </div>
