@@ -6,5 +6,13 @@
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body>
+<h1>Ist mir egal - Text to speech</h1>
+<div align="center">
+    <form action="${pageContext.request.contextPath}/IstMirEgal/" method="post">
+        <input type="text" name="text">
+        <br/><br/>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 </body>
 </html>

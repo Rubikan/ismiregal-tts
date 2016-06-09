@@ -29,4 +29,15 @@ public class DontCareServlet extends HttpServlet {
         response.setHeader("Content-Length", String.valueOf(sound.length()));
         IOUtils.copy(new FileInputStream(sound), response.getOutputStream());
     }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String speechText = request.getParameter("text");
+
+        File sound = vu.getWav(speechText);
+
+        response.setContentType("audio/x-wav");
+        response.setHeader("Content-Length", String.valueOf(sound.length()));
+        IOUtils.copy(new FileInputStream(sound), response.getOutputStream());
+    }
 }
