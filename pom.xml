@@ -31,6 +31,7 @@
     </repositories>
 
     <dependencies>
+        <!-- Dependencies provided by Tomcat container -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jsp-api</artifactId>
@@ -43,6 +44,7 @@
             <version>8.0.33</version>
             <scope>provided</scope>
         </dependency>
+        <!-- TTS dependencies -->
         <dependency>
             <groupId>net.sf.sociaal</groupId>
             <artifactId>freetts</artifactId>
@@ -56,7 +58,8 @@
         <dependency>
             <groupId>de.dfki.mary</groupId>
             <artifactId>marytts</artifactId>
-            <version>5.1.2</version>
+            <version>5.2-beta3</version>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>de.dfki.mary</groupId>
@@ -73,6 +76,7 @@
             <artifactId>marytts-lang-de</artifactId>
             <version>5.1.2</version>
         </dependency>
+        <!-- Other dependencies -->
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
