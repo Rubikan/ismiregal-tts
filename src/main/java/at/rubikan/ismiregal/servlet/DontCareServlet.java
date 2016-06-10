@@ -1,6 +1,7 @@
 package at.rubikan.ismiregal.servlet;
 
 import at.rubikan.ismiregal.util.VoiceUtilities;
+import marytts.exceptions.MaryConfigurationException;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Andreas Rubik
@@ -21,15 +23,20 @@ public class DontCareServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pathInfo = request.getPathInfo();
-        String speechText = pathInfo.replace("/", " ").trim();
-        if (speechText.length() > 0) {
-            File sound = vu.getWav(speechText);
+        try {
+            List<String> voices = vu.getVoices();
+            String pathInfo = request.getPathInfo();
+            String speechText = pathInfo.replace("/", " ").trim();
+            if (speechText.length() > 0) {
+                File sound = vu.getWav(speechText);
 
-            response.setContentType("audio/x-wav");
-            response.setHeader("Content-Length", String.valueOf(sound.length()));
-            IOUtils.copy(new FileInputStream(sound), response.getOutputStream());
-        } else {
+                response.setContentType("audio/x-wav");
+                response.setHeader("Content-Length", String.valueOf(sound.length()));
+                IOUtils.copy(new FileInputStream(sound), response.getOutputStream());
+            } else {
+                response.getWriter().print("ERROR");
+            }
+        } catch (Exception e) {
             response.getWriter().print("ERROR");
         }
     }

@@ -23,6 +23,13 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>mary-tts</id>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -43,13 +50,28 @@
         </dependency>
         <dependency>
             <groupId>org.mobicents.external.freetts</groupId>
-            <artifactId>cmu_us_kal</artifactId>
+            <artifactId>en_us</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.mobicents.external.freetts</groupId>
-            <artifactId>cmulex</artifactId>
-            <version>1.0</version>
+            <groupId>de.dfki.mary</groupId>
+            <artifactId>marytts</artifactId>
+            <version>5.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>de.dfki.mary</groupId>
+            <artifactId>voice-cmu-slt-hsmm</artifactId>
+            <version>5.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>de.dfki.mary</groupId>
+            <artifactId>marytts-lang-en</artifactId>
+            <version>5.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>de.dfki.mary</groupId>
+            <artifactId>marytts-lang-de</artifactId>
+            <version>5.1.2</version>
         </dependency>
         <dependency>
             <groupId>javax.ws.rs</groupId>

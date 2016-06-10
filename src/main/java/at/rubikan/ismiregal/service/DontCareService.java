@@ -2,6 +2,7 @@ package at.rubikan.ismiregal.service;
 
 import at.rubikan.ismiregal.util.VoiceUtilities;
 import com.google.gson.Gson;
+import marytts.exceptions.MaryConfigurationException;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.ws.rs.GET;
@@ -19,9 +20,9 @@ public class DontCareService {
     private static VoiceUtilities vu = new VoiceUtilities();
 
     @GET
-    @Path("listvoices")
+    @Path("listVoices")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listVoices() {
+    public Response listVoices() throws MaryConfigurationException {
         List<String> voices = vu.getVoices();
         String json = new Gson().toJson(voices);
 
