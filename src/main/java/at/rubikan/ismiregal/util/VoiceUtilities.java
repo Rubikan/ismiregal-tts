@@ -5,11 +5,11 @@ import marytts.LocalMaryInterface;
 import marytts.MaryInterface;
 import marytts.exceptions.MaryConfigurationException;
 import marytts.exceptions.SynthesisException;
-import marytts.util.data.audio.AudioPlayer;
 import marytts.util.data.audio.MaryAudioUtils;
 
 import javax.sound.sampled.AudioInputStream;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -34,6 +34,7 @@ public class VoiceUtilities {
 
     private File generateWav(String text) throws MaryConfigurationException, SynthesisException, IOException {
         marytts = new LocalMaryInterface();
+        marytts.setLocale(Locale.GERMAN);
         marytts.setVoice("cmu-slt-hsmm");
         String path = System.getProperty("java.io.tmpdir") + File.separator + text.replace(" ", "") + ".wav";
         AudioInputStream audio = marytts.generateAudio(text);
@@ -44,8 +45,9 @@ public class VoiceUtilities {
     }
 
     public List<String> getVoices() throws MaryConfigurationException {
-        List<String> list = new ArrayList<>();
+        marytts = new LocalMaryInterface();
         Set<String> voices = marytts.getAvailableVoices();
+        List<String> list = new ArrayList<>();
         list.addAll(voices);
 
         return list;

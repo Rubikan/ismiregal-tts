@@ -24,7 +24,6 @@ public class DontCareServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<String> voices = vu.getVoices();
             String pathInfo = request.getPathInfo();
             String speechText = pathInfo.replace("/", " ").trim();
             if (speechText.length() > 0) {
