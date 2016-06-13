@@ -20,17 +20,43 @@ import java.util.Set;
  */
 public class VoiceUtilities {
     private static final String IST_MIR_EGAL = " ist mir egal";
-    private static VoiceCache vc = new VoiceCache();
+    private static final String DEFAULT_VOICE = "bits3-hsmm";
+    private static final String VOICE_CACHE_DIR = System.getProperty("java.io.tmpdir") + File.separator + "voiceCache" + File.separator;
     private static MaryInterface marytts;
+    private static VoiceCache vc = new VoiceCache();
     private static Logger log = Logger.getLogger(VoiceUtilities.class);
 
-    public VoiceUtilities() {
-        try {
-            marytts = new LocalMaryInterface();
-            marytts.setLocale(Locale.GERMAN);
-            marytts.setVoice("bits3-hsmm");
-        } catch (Exception e) {
-            log.error("Error initializing LocalMaryInterface!");
+    public static void initialize() {
+        if (marytts == null) {
+            try {
+                // Initialize MaryTTS Interface
+                marytts = new LocalMaryInterface();
+                marytts.setLocale(Locale.GERMAN);
+                marytts.setVoice(DEFAULT_VOICE);
+                // Create VoiceCache Folder
+                File voiceCacheDir = new File(VOICE_CACHE_DIR);
+                if (!voiceCacheDir.exists()) {
+                    if (!voiceCacheDir.mkdir()) {
+                        log.error("Error creating voiceCache directory!");
+                    }
+                }
+            } catch (MaryConfigurationException e) {
+                log.error("Error initializing LocalMaryInterface!");
+            }
+        } else {
+            log.warn("Initialize method should only be called once!");
+        }
+    }
+
+    public static void cleanVoiceCache() {
+        File dir = new File(VOICE_CACHE_DIR);
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (File f : files) {
+                if (!f.delete()) {
+                    log.warn("Could not remove " + f.getName() + " from cache.");
+                }
+            }
         }
     }
 
@@ -44,7 +70,7 @@ public class VoiceUtilities {
     }
 
     private File generateWav(String text) throws MaryConfigurationException, SynthesisException, IOException {
-        String path = System.getProperty("java.io.tmpdir") + File.separator + text.replace(" ", "") + ".wav";
+        String path = VOICE_CACHE_DIR + text.replace(" ", "") + ".wav";
         AudioInputStream audio = marytts.generateAudio(text);
         double[] samples = MaryAudioUtils.getSamplesAsDoubleArray(audio);
         MaryAudioUtils.writeWavFile(samples, path, audio.getFormat());
