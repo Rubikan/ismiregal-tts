@@ -46,6 +46,26 @@
         </dependency>
         <!-- TTS dependencies -->
         <dependency>
+            <groupId>de.dfki.mary</groupId>
+            <artifactId>marytts</artifactId>
+            <version>5.2-beta3</version>
+        </dependency>
+        <dependency>
+            <groupId>de.dfki.mary</groupId>
+            <artifactId>voice-cmu-slt-hsmm</artifactId>
+            <version>5.2-beta3</version>
+        </dependency>
+        <dependency>
+            <groupId>de.dfki.mary</groupId>
+            <artifactId>marytts-lang-en</artifactId>
+            <version>5.2-beta3</version>
+        </dependency>
+        <dependency>
+            <groupId>de.dfki.mary</groupId>
+            <artifactId>marytts-lang-de</artifactId>
+            <version>5.2-beta3</version>
+        </dependency>
+        <dependency>
             <groupId>net.sf.sociaal</groupId>
             <artifactId>freetts</artifactId>
             <version>1.2.2</version>
@@ -54,27 +74,6 @@
             <groupId>org.mobicents.external.freetts</groupId>
             <artifactId>en_us</artifactId>
             <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>de.dfki.mary</groupId>
-            <artifactId>marytts</artifactId>
-            <version>5.2-beta3</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>de.dfki.mary</groupId>
-            <artifactId>voice-cmu-slt-hsmm</artifactId>
-            <version>5.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>de.dfki.mary</groupId>
-            <artifactId>marytts-lang-en</artifactId>
-            <version>5.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>de.dfki.mary</groupId>
-            <artifactId>marytts-lang-de</artifactId>
-            <version>5.1.2</version>
         </dependency>
         <!-- Other dependencies -->
         <dependency>

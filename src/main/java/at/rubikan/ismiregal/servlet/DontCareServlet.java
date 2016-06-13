@@ -1,7 +1,6 @@
 package at.rubikan.ismiregal.servlet;
 
 import at.rubikan.ismiregal.util.VoiceUtilities;
-import marytts.exceptions.MaryConfigurationException;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author Andreas Rubik

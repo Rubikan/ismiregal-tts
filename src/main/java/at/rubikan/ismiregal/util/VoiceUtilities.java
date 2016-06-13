@@ -1,6 +1,5 @@
 package at.rubikan.ismiregal.util;
 
-
 import marytts.LocalMaryInterface;
 import marytts.MaryInterface;
 import marytts.exceptions.MaryConfigurationException;
