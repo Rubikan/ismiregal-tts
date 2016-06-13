@@ -17,7 +17,8 @@ public class VoiceCache {
             .expireAfterAccess(10, TimeUnit.MINUTES)
             .removalListener(new RemovalListener<String, File>() {
                 public void onRemoval(RemovalNotification<String, File> removal) {
-                    removal.getValue().delete();
+                    if (removal.getValue() != null)
+                        removal.getValue().delete();
                 }
             })
             .build();
