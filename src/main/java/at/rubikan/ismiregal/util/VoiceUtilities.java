@@ -5,6 +5,7 @@ import marytts.MaryInterface;
 import marytts.exceptions.MaryConfigurationException;
 import marytts.exceptions.SynthesisException;
 import marytts.util.data.audio.MaryAudioUtils;
+import org.apache.log4j.Logger;
 
 import javax.sound.sampled.AudioInputStream;
 import java.io.File;
@@ -21,6 +22,17 @@ public class VoiceUtilities {
     private static final String IST_MIR_EGAL = " ist mir egal";
     private static VoiceCache vc = new VoiceCache();
     private static MaryInterface marytts;
+    private static Logger log = Logger.getLogger(VoiceUtilities.class);
+
+    public VoiceUtilities() {
+        try {
+            marytts = new LocalMaryInterface();
+            marytts.setLocale(Locale.GERMAN);
+            marytts.setVoice("bits3-hsmm");
+        } catch (Exception e) {
+            log.error("Error initializing LocalMaryInterface!");
+        }
+    }
 
     public File getWav(String text) throws MaryConfigurationException, SynthesisException, IOException {
         if (vc.get(text) != null) {
@@ -32,9 +44,6 @@ public class VoiceUtilities {
     }
 
     private File generateWav(String text) throws MaryConfigurationException, SynthesisException, IOException {
-        marytts = new LocalMaryInterface();
-        marytts.setLocale(Locale.GERMAN);
-        marytts.setVoice("bits3-hsmm");
         String path = System.getProperty("java.io.tmpdir") + File.separator + text.replace(" ", "") + ".wav";
         AudioInputStream audio = marytts.generateAudio(text);
         double[] samples = MaryAudioUtils.getSamplesAsDoubleArray(audio);
@@ -44,7 +53,6 @@ public class VoiceUtilities {
     }
 
     public List<String> getVoices() throws MaryConfigurationException {
-        marytts = new LocalMaryInterface();
         Set<String> voices = marytts.getAvailableVoices();
         List<String> list = new ArrayList<>();
         list.addAll(voices);
