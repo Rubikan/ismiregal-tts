@@ -160,6 +160,7 @@ $RECYCLE.BIN/
 
 # Package Files #
 *.jar
+!voice-bits3-hsmm-5.1.jar
 *.war
 *.ear
 

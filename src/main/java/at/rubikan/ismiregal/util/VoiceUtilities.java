@@ -34,7 +34,7 @@ public class VoiceUtilities {
     private File generateWav(String text) throws MaryConfigurationException, SynthesisException, IOException {
         marytts = new LocalMaryInterface();
         marytts.setLocale(Locale.GERMAN);
-        marytts.setVoice("cmu-slt-hsmm");
+        marytts.setVoice("bits3-hsmm");
         String path = System.getProperty("java.io.tmpdir") + File.separator + text.replace(" ", "") + ".wav";
         AudioInputStream audio = marytts.generateAudio(text);
         double[] samples = MaryAudioUtils.getSamplesAsDoubleArray(audio);
