@@ -49,6 +49,7 @@
             <groupId>de.dfki.mary</groupId>
             <artifactId>marytts</artifactId>
             <version>5.2-beta3</version>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>de.dfki.mary</groupId>
