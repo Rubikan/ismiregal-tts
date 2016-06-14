@@ -1,7 +1,6 @@
 package at.rubikan.ismiregal.servlet;
 
 import at.rubikan.ismiregal.util.VoiceUtilities;
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 /**
  * @author Andreas Rubik
@@ -28,7 +28,8 @@ public class Base64TTSServlet extends HttpServlet {
             if (speechText.length() > 0) {
                 File sound = vu.getWav(speechText);
                 byte[] bytes = IOUtils.toByteArray(new FileInputStream(sound));
-                response.getWriter().print(Base64.encode(bytes));
+                String base64 = Base64.getEncoder().encodeToString(bytes);
+                response.getWriter().print(base64);
             } else {
                 response.getWriter().print("ERROR");
             }
