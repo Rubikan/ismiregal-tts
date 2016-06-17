@@ -2,14 +2,12 @@ package at.rubikan.ismiregal.servlet;
 
 import at.rubikan.ismiregal.util.VoiceUtilities;
 import com.google.gson.Gson;
-import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
