@@ -16,7 +16,7 @@ import java.io.IOException;
  * @author Andreas Rubik
  */
 @WebServlet("/tts/*")
-public class DontCareServlet extends HttpServlet {
+public class DirectTTSServlet extends HttpServlet {
     private static VoiceUtilities vu = new VoiceUtilities();
 
     @Override
