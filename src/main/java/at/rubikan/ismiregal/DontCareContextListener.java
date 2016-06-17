@@ -7,6 +7,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+/**
+ * @author Andreas Rubik
+ */
 @WebListener
 public class DontCareContextListener implements ServletContextListener {
     private static Logger log = Logger.getLogger(DontCareContextListener.class);
